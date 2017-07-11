@@ -265,7 +265,7 @@
         return this.$el.getElementsByClassName('highlight')[0].clientHeight;
       },
       codePrismed() {
-        var hl = Prism.highlight(striptags.strip(this.code, ['desc', 'lang']), Prism.languages[this.lang] || Prism.languages.markup)
+        var hl = Prism.highlight(striptags.strip(this.code, ['desc', 'lang']).replace(/\/\*.*\*\/\s*/, ''), Prism.languages[this.lang] || Prism.languages.markup)
         return '<pre v-pre data-lang="' + this.lang + '"><code class="lang-' + this.lang + '">' + hl + '</code></pre>'
       }
     },

@@ -1776,7 +1776,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return this.$el.getElementsByClassName('highlight')[0].clientHeight;
     },
     codePrismed: function codePrismed() {
-      var hl = __WEBPACK_IMPORTED_MODULE_1_prismjs___default.a.highlight(__WEBPACK_IMPORTED_MODULE_0__util_strip_tags___default.a.strip(this.code, ['desc', 'lang']), __WEBPACK_IMPORTED_MODULE_1_prismjs___default.a.languages[this.lang] || __WEBPACK_IMPORTED_MODULE_1_prismjs___default.a.languages.markup);
+      var hl = __WEBPACK_IMPORTED_MODULE_1_prismjs___default.a.highlight(__WEBPACK_IMPORTED_MODULE_0__util_strip_tags___default.a.strip(this.code, ['desc', 'lang']).replace(/\/\*.*\*\/\s*/, ''), __WEBPACK_IMPORTED_MODULE_1_prismjs___default.a.languages[this.lang] || __WEBPACK_IMPORTED_MODULE_1_prismjs___default.a.languages.markup);
       return '<pre v-pre data-lang="' + this.lang + '"><code class="lang-' + this.lang + '">' + hl + '</code></pre>';
     }
   },
