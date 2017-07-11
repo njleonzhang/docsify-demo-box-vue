@@ -80,27 +80,22 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ (function(module, exports) {
 
-exports.strip = function (str, tags) {
+exports.strip = function (str, tag) {
   var dummyNode = document.createElement("DIV");
   dummyNode.innerHTML = str;
+  var targetNode = dummyNode.querySelector(tag);
+  if (targetNode) {
+    dummyNode.removeChild(targetNode);
+  }
 
-  tags = tags ? [].concat(tags) : [];
-
-  tags.forEach(function (tag) {
-    var targetNode = dummyNode.querySelector(tag);
-    if (targetNode) {
-      dummyNode.removeChild(targetNode);
-    }
-  });
-
-  return dummyNode.innerHTML.trim();
+  return dummyNode.innerHTML;
 };
 
 exports.fetch = function (str, tag) {
   var dummyNode = document.createElement("DIV");
   dummyNode.innerHTML = str;
 
-  return dummyNode.querySelector(tag) ? dummyNode.querySelector(tag).innerHTML.trim() : "";
+  return dummyNode.querySelector(tag) ? dummyNode.querySelector(tag).innerHTML : "";
 };
 
 /***/ }),
@@ -1183,7 +1178,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "name": "text-slide"
     }
-  }, [_c('span', [_vm._v(_vm._s(_vm.controlText))])])], 1)], 2)
+  }, [_c('span', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.hovering),
+      expression: "hovering"
+    }]
+  }, [_vm._v(_vm._s(_vm.controlText))])])], 1)], 2)
 },staticRenderFns: []}
 
 /***/ }),
@@ -1705,7 +1707,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     lang: {
       type: String,
-      default: ''
+      default: 'html'
     }
   },
 
@@ -1765,7 +1767,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return this.$el.getElementsByClassName('highlight')[0].clientHeight;
     },
     codePrismed: function codePrismed() {
-      var hl = __WEBPACK_IMPORTED_MODULE_1_prismjs___default.a.highlight(__WEBPACK_IMPORTED_MODULE_0__util_strip_tags___default.a.strip(this.code, ['desc', 'lang']), __WEBPACK_IMPORTED_MODULE_1_prismjs___default.a.languages[this.lang] || __WEBPACK_IMPORTED_MODULE_1_prismjs___default.a.languages.markup);
+      var hl = __WEBPACK_IMPORTED_MODULE_1_prismjs___default.a.highlight(__WEBPACK_IMPORTED_MODULE_0__util_strip_tags___default.a.strip(this.code, 'desc'), __WEBPACK_IMPORTED_MODULE_1_prismjs___default.a.languages[this.lang] || __WEBPACK_IMPORTED_MODULE_1_prismjs___default.a.languages.markup);
       return '<pre v-pre data-lang="' + this.lang + '"><code class="lang-' + this.lang + '">' + hl + '</code></pre>';
     }
   },

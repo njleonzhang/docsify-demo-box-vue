@@ -15,7 +15,7 @@
     <div class="demo-block-control" @click="isExpanded = !isExpanded">
       <transition name="arrow-slide"></transition>
       <transition name="text-slide">
-        <span v-show="hovering">{{ controlText }}</span>
+        <span>{{ controlText }}</span>
       </transition>
     </div>
   </div>
@@ -191,6 +191,10 @@
       code: {
         type: String,
         default: ''
+      },
+      lang: {
+        type: String,
+        default: ''
       }
     },
 
@@ -251,8 +255,8 @@
         return this.$el.getElementsByClassName('highlight')[0].clientHeight;
       },
       codePrismed() {
-        var hl = Prism.highlight(striptags.strip(this.code, 'desc'), Prism.languages['html'] || Prism.languages.markup)
-        return '<pre v-pre data-lang="html"><code class="lang-html">' + hl + '</code></pre>'
+        var hl = Prism.highlight(striptags.strip(this.code, ['desc', 'lang']), Prism.languages[this.lang] || Prism.languages.markup)
+        return '<pre v-pre data-lang="' + this.lang + '"><code class="lang-' + this.lang + '">' + hl + '</code></pre>'
       }
     },
 
