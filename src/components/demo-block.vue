@@ -167,7 +167,7 @@
 
 <script type="text/babel">
   import striptags from '../util/strip-tags'
-  import Prism from 'prismjs'
+  // import Prism from 'prismjs'
   export default {
     name: 'demo-block',
     data() {
