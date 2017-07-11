@@ -8,7 +8,15 @@
 <script>
 import {generateComponent} from './components/index'
 
-let DemoBlockWrapper = generateComponent('<template><div>Hello, {{ name }}!</div></template>\n<script>export default {data: function() {return {name: "vue"}}}<\/script>')
+let jsResources = '<scr' + 'ipt src="//unpkg.com/vue/dist/vue.js"></scr' + 'ipt>'
+  + '\n<scr' + `ipt src="//unpkg.com/element-ui/lib/index.js"></scr` + 'ipt>'
+  + '\n<scr' + `ipt src="https://rawgit.com/njleonzhang/vue-data-tables/dev/dist/data-tables.js"></scr` + 'ipt>'
+
+let cssResources = '@import url("//unpkg.com/element-ui/lib/theme-default/index.css");'
+
+let bootCode = 'Vue.use(DataTables)\n'
+
+let DemoBlockWrapper = generateComponent('<template><div>Hello, {{ name }}!</div></template>\n<script>export default {data: function() {return {name: "vue"}}}<\/script>', 'html', jsResources, cssResources, bootCode)
 
 export default {
   name: 'app',

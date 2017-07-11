@@ -1706,6 +1706,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     lang: {
       type: String,
       default: ''
+    },
+    jsResources: {
+      type: String,
+      default: ''
+    },
+    cssResources: {
+      type: String,
+      default: ''
+    },
+    bootCode: {
+      type: String,
+      default: ''
     }
   },
 
@@ -1716,11 +1728,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           html = _jsfiddle.html,
           style = _jsfiddle.style;
 
-      var resourcesTpl = '<scr' + 'ipt src="//unpkg.com/vue/dist/vue.js"></scr' + 'ipt>' + '\n<scr' + 'ipt src="//unpkg.com/element-ui/lib/index.js"></scr' + 'ipt>';
+      var jsTpl = this.bootCode + (script || '').replace(/export default/, 'var Main =').trim();
+      var htmlTpl = this.jsResources + '\n<div id="app">\n' + html.trim() + '\n</div>';
+      var cssTpl = this.cssResources + '\n' + (style || '').trim() + '\n';
 
-      var jsTpl = (script || '').replace(/export default/, 'var Main =').trim();
-      var htmlTpl = resourcesTpl + '\n<div id="app">\n' + html.trim() + '\n</div>';
-      var cssTpl = '@import url("//unpkg.com/element-ui/lib/theme-default/index.css");\n' + (style || '').trim() + '\n';
       jsTpl = jsTpl ? jsTpl + '\nvar Ctor = Vue.extend(Main)\nnew Ctor().$mount(\'#app\')' : 'new Vue().$mount(\'#app\')';
 
       var data = {
@@ -1836,7 +1847,7 @@ var install = function install() {
 //           </demo-block/>`
 // }
 
-var generateComponent = function generateComponent(code, lang) {
+var generateComponent = function generateComponent(code, lang, jsResources, cssResources, bootCode) {
   var html = __WEBPACK_IMPORTED_MODULE_2__util_strip_tags___default.a.fetch(code, 'template');
   var style = __WEBPACK_IMPORTED_MODULE_2__util_strip_tags___default.a.fetch(code, 'style');
   var script = __WEBPACK_IMPORTED_MODULE_2__util_strip_tags___default.a.fetch(code, 'script');
@@ -1849,8 +1860,10 @@ var generateComponent = function generateComponent(code, lang) {
 
   var jsfiddleStr = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default()({ html: html, style: style, script: script });
 
+  console.log(jsResources, cssResources, bootCode);
+
   return {
-    template: '\n      <demo-block class="demo-box" :jsfiddle="jsfiddle" :code="code" :desc="desc" :lang="lang">\n        <div class="source" slot="source"><my-code/></div>\n      </demo-block/>\n    ',
+    template: '\n      <demo-block class="demo-box"\n        :jsfiddle="jsfiddle"\n        :code="code"\n        :desc="desc"\n        :lang="lang"\n        :js-resources="jsResources"\n        :css-resources="cssResources"\n        :boot-code="bootCode">\n        <div class="source" slot="source"><my-code/></div>\n      </demo-block/>\n    ',
 
     components: {
       DemoBlock: __WEBPACK_IMPORTED_MODULE_3__demo_block___default.a,
@@ -1862,7 +1875,10 @@ var generateComponent = function generateComponent(code, lang) {
         jsfiddle: { html: html, style: style, script: script },
         code: code,
         desc: desc,
-        lang: lang
+        lang: lang,
+        jsResources: jsResources,
+        cssResources: cssResources,
+        bootCode: bootCode
       };
     }
   };

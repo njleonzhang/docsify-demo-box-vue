@@ -28,7 +28,7 @@ export let install = function() {
 //           </demo-block/>`
 // }
 
-export let generateComponent = function(code, lang) {
+export let generateComponent = function(code, lang, jsResources, cssResources, bootCode) {
   let html = striptags.fetch(code, 'template')
   let style = striptags.fetch(code, 'style')
   let script = striptags.fetch(code, 'script')
@@ -41,9 +41,18 @@ export let generateComponent = function(code, lang) {
 
   let jsfiddleStr = JSON.stringify({html, style, script})
 
+  console.log(jsResources, cssResources, bootCode)
+
   return {
     template: `
-      <demo-block class="demo-box" :jsfiddle="jsfiddle" :code="code" :desc="desc" :lang="lang">
+      <demo-block class="demo-box"
+        :jsfiddle="jsfiddle"
+        :code="code"
+        :desc="desc"
+        :lang="lang"
+        :js-resources="jsResources"
+        :css-resources="cssResources"
+        :boot-code="bootCode">
         <div class="source" slot="source"><my-code/></div>
       </demo-block/>
     `,
@@ -58,7 +67,10 @@ export let generateComponent = function(code, lang) {
         jsfiddle: {html, style, script},
         code,
         desc,
-        lang
+        lang,
+        jsResources,
+        cssResources,
+        bootCode
       }
     }
   }
