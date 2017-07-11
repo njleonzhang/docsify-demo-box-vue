@@ -7,15 +7,13 @@
 </template>
 
 <script>
-import Hello from './components/Hello'
-import {DemoBlockGenerator} from './components/index'
+import {generateComponent} from './components/index'
 
-let DemoBlockWrapper = DemoBlockGenerator('<template><div>Hello, {{ name }}!</div></template>\n<script>export default {data: function() {return {name: "vue"}}}<\/script>')
+let DemoBlockWrapper = generateComponent('<template><div>Hello, {{ name }}!</div></template>\n<script>export default {data: function() {return {name: "vue"}}}<\/script>')
 
 export default {
   name: 'app',
   components: {
-    Hello,
     DemoBlockWrapper
   }
 }

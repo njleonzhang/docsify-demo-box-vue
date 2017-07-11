@@ -4,7 +4,7 @@
     :class="{ 'hover': hovering }"
     @mouseenter="hovering = true"
     @mouseleave="hovering = false">
-    <div class="source" slot="source"></div>
+    <slot name="source"></slot>
     <div class="meta">
       <div class="description">
         {{desc}}
@@ -169,11 +169,11 @@
   import striptags from '../util/strip-tags'
   import Prism from 'prismjs'
   export default {
+    name: 'demo-block',
     data() {
       return {
         hovering: false,
         isExpanded: false,
-        codePrismed: ''
       }
     },
 
@@ -185,6 +185,10 @@
         type: Object
       },
       desc: {
+        type: String,
+        default: ''
+      },
+      code: {
         type: String,
         default: ''
       }
@@ -229,12 +233,6 @@
 
         form.submit();
       },
-
-      codePrism(code, lang) {
-        lang = lang || ''
-        var hl = Prism.highlight(code, Prism.languages[lang] || Prism.languages.markup)
-        return '<pre v-pre data-lang="' + lang + '"><code class="lang-' + lang + '">' + hl + '</code></pre>'
-      }
     },
 
     computed: {
@@ -251,6 +249,10 @@
           return Math.max(this.$el.getElementsByClassName('description')[0].clientHeight, this.$el.getElementsByClassName('highlight')[0].clientHeight);
         }
         return this.$el.getElementsByClassName('highlight')[0].clientHeight;
+      },
+      codePrismed() {
+        var hl = Prism.highlight(striptags.strip(this.code, 'desc'), Prism.languages['html'] || Prism.languages.markup)
+        return '<pre v-pre data-lang="html"><code class="lang-html">' + hl + '</code></pre>'
       }
     },
 
