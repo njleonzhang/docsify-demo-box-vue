@@ -41,8 +41,6 @@ export let generateComponent = function(code, lang, jsResources, cssResources, b
 
   let jsfiddleStr = JSON.stringify({html, style, script})
 
-  console.log(jsResources, cssResources, bootCode)
-
   return {
     template: `
       <demo-block class="demo-box"

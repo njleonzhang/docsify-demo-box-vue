@@ -1860,8 +1860,6 @@ var generateComponent = function generateComponent(code, lang, jsResources, cssR
 
   var jsfiddleStr = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default()({ html: html, style: style, script: script });
 
-  console.log(jsResources, cssResources, bootCode);
-
   return {
     template: '\n      <demo-block class="demo-box"\n        :jsfiddle="jsfiddle"\n        :code="code"\n        :desc="desc"\n        :lang="lang"\n        :js-resources="jsResources"\n        :css-resources="cssResources"\n        :boot-code="bootCode">\n        <div class="source" slot="source"><my-code/></div>\n      </demo-block/>\n    ',
 
