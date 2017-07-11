@@ -28,12 +28,11 @@ export let install = function() {
 //           </demo-block/>`
 // }
 
-export let generateComponent = function(code) {
+export let generateComponent = function(code, lang) {
   let html = striptags.fetch(code, 'template')
   let style = striptags.fetch(code, 'style')
   let script = striptags.fetch(code, 'script')
   let desc = striptags.fetch(code, 'desc')
-  let lang = striptags.fetch(code, 'lang')
 
   let scriptStr = script.replace('export default', '').trim()
   let scriptObj = eval('(' + scriptStr + ')')

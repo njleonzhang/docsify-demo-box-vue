@@ -1836,12 +1836,11 @@ var install = function install() {
 //           </demo-block/>`
 // }
 
-var generateComponent = function generateComponent(code) {
+var generateComponent = function generateComponent(code, lang) {
   var html = __WEBPACK_IMPORTED_MODULE_2__util_strip_tags___default.a.fetch(code, 'template');
   var style = __WEBPACK_IMPORTED_MODULE_2__util_strip_tags___default.a.fetch(code, 'style');
   var script = __WEBPACK_IMPORTED_MODULE_2__util_strip_tags___default.a.fetch(code, 'script');
   var desc = __WEBPACK_IMPORTED_MODULE_2__util_strip_tags___default.a.fetch(code, 'desc');
-  var lang = __WEBPACK_IMPORTED_MODULE_2__util_strip_tags___default.a.fetch(code, 'lang');
 
   var scriptStr = script.replace('export default', '').trim();
   var scriptObj = eval('(' + scriptStr + ')');
