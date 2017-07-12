@@ -1,21 +1,54 @@
-# element-demo-box
+# docsify-demo-box-plugin
 
-> element-ui demo box, write demo in document and preview in jsfiddle
+> element-ui demo box, write demo in md, instant preview, edit in jsfiddle(only support Vue currently)
 
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
+1. Link the script
+```
+<script src="//unpkg.com/vue/dist/vue.js"></script>
+<script src="https://rawgit.com/njleonzhang/docsify-demo-box/master/dist/docsify-demo-box-plugin.js"></script>
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+2. Use as docsify plugin
+
+```
+window.$docsify = {
+  ...
+
+  plugins: [
+    DemoBoxPlugin.create(jsResources, cssResources, bootCode)
+  ]
+}
+```
+
+jsResources: javascript `script` will be added in jsfiddle `html`
+cssResources: css `link` will be added in jsfiddle css`
+bootCode: javascript code, you want to add before sample code, which is usually used to boot your library.
+
+[sample docsify index.html](https://github.com/njleonzhang/vue-data-tables-doc/blob/master/index.html)
+
+3. write code in md
+
+# Render a table
+
+```
+```html
+/*vue*/
+<desc>
+  some desc your want
+</desc>
+<template>
+  <div>Hello, {{ name }}!</div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return { name: 'Vue' }
+    }
+  }
+</script>
+```// end
+```
+
+[sample](https://njleonzhang.github.io/vue-data-tables-doc/#/quickstart?id=hello-word)
+[sample source md](https://github.com/njleonzhang/vue-data-tables-doc/blob/master/quickstart.md#hello-word)
