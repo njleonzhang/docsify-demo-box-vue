@@ -20,9 +20,9 @@ window.$docsify = {
 }
 ```
 
-jsResources: javascript `script` will be added in jsfiddle `html`
-cssResources: css `link` will be added in jsfiddle css`
-bootCode: javascript code, you want to add before sample code, which is usually used to boot your library.
+* jsResources: javascript `script` will be added in jsfiddle `html`
+* cssResources: css `link` will be added in jsfiddle css`
+* bootCode: javascript code, you want to add before sample code, which is usually used to boot your library.
 
 [sample docsify index.html](https://github.com/njleonzhang/vue-data-tables-doc/blob/master/index.html)
 
@@ -50,5 +50,6 @@ bootCode: javascript code, you want to add before sample code, which is usually 
 ```// end
 ```
 
-[sample](https://njleonzhang.github.io/vue-data-tables-doc/#/quickstart?id=hello-word)
-[sample source md](https://github.com/njleonzhang/vue-data-tables-doc/blob/master/quickstart.md#hello-word)
+* [sample](https://njleonzhang.github.io/vue-data-tables-doc/#/quickstart?id=hello-word)
+
+* [sample source md](https://github.com/njleonzhang/vue-data-tables-doc/blob/master/quickstart.md#hello-word)
