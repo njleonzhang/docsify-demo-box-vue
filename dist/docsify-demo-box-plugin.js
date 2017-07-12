@@ -1874,22 +1874,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__components___["a" /* install */])(__WEBPACK_IMPORTED_MODULE_0_vue___default.a);
 
-var create = function create(hook, vm) {
-  window.$docsify.markdown = {
-    renderer: {
-      code: function code(_code, lang) {
-        if (/^\/\*\s*vue\s*\*\//.test(_code)) {
-          id++;
-          var DemoBlockWrapper = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__components___["b" /* generateComponent */])(_code, lang, jsResources, cssResources, bootCode);
-          __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('DemoBox' + id, DemoBlockWrapper);
-          return '<' + 'demo-box-' + id + '></demo-box-' + id + '>';
-        } else {
-          lang = lang || '';
-          var hl = Prism.highlight(_code, Prism.languages[lang] || Prism.languages.markup);
-          return '<pre v-pre data-lang="' + lang + '"><code class="lang-' + lang + '">' + hl + '</code></pre>';
+var create = function create(jsResources, cssResources, bootCode) {
+  return function (hook, vm) {
+    window.$docsify.markdown = {
+      renderer: {
+        code: function code(_code, lang) {
+          if (/^\/\*\s*vue\s*\*\//.test(_code)) {
+            id++;
+            var DemoBlockWrapper = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__components___["b" /* generateComponent */])(_code, lang, jsResources, cssResources, bootCode);
+            __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('DemoBox' + id, DemoBlockWrapper);
+            return '<' + 'demo-box-' + id + '></demo-box-' + id + '>';
+          } else {
+            lang = lang || '';
+            var hl = Prism.highlight(_code, Prism.languages[lang] || Prism.languages.markup);
+            return '<pre v-pre data-lang="' + lang + '"><code class="lang-' + lang + '">' + hl + '</code></pre>';
+          }
         }
       }
-    }
+    };
   };
 };
 
