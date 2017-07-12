@@ -12,7 +12,7 @@ var env = config.build.env
 
 var webpackConfig = merge(baseWebpackConfig, {
   entry: {
-    app: './src/components/index.js'
+    app: './src/plugin/index.js'
   },
   module: {
     rules: utils.styleLoaders({
@@ -23,8 +23,8 @@ var webpackConfig = merge(baseWebpackConfig, {
   // devtool: config.build.productionSourceMap ? '#source-map' : false,
   output: {
     path: config.build.assetsRoot,
-    filename: 'docsify-demo-box.js',
-    library: 'DemoBox',
+    filename: 'docsify-demo-box-plugin.js',
+    library: 'DemoBoxPlugin',
     libraryTarget: 'umd'
   },
   externals: {

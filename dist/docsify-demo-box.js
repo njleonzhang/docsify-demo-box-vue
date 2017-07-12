@@ -1820,32 +1820,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-// import guid from '../util/guid'
 
 var install = function install() {
   __WEBPACK_IMPORTED_MODULE_1_vue___default.a.component(__WEBPACK_IMPORTED_MODULE_3__demo_block___default.a.name, __WEBPACK_IMPORTED_MODULE_3__demo_block___default.a);
 };
-
-// export let generateHtml = function(code) {
-//   let template = striptags.fetch(code, 'template').trim()
-//   let style = striptags.fetch(code, 'style')
-//   let script = striptags.fetch(code, 'script')
-//   let desc = striptags.fetch(code, 'desc')
-//
-//   let componentName = guid()
-//   let scriptStr = script.replace('export default', '').trim()
-//   let scriptObj = eval('(' + scriptStr + ')')
-//
-//   scriptObj.template = template
-//
-//   Vue.component(componentName, scriptObj)
-//   console.log(componentName)
-//   let jsfiddleStr = JSON.stringify({template, style, script})
-//   console.log(jsfiddleStr)
-//   return `<demo-block class="demo-box" :jsfiddle="${jsfiddleStr}" :code="code">
-//             <div class="source" slot="source"><${componentName}/></div>
-//           </demo-block/>`
-// }
 
 var generateComponent = function generateComponent(code, lang, jsResources, cssResources, bootCode) {
   var html = __WEBPACK_IMPORTED_MODULE_2__util_strip_tags___default.a.fetch(code, 'template');
