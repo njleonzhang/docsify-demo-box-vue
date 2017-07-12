@@ -28,8 +28,6 @@ window.$docsify = {
 
 3. write code in md
 
-# Render a table
-
 ```
 ```html
 /*vue*/
