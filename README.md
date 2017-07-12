@@ -24,7 +24,7 @@ window.$docsify = {
 * cssResources: css `link` will be added in jsfiddle css`
 * bootCode: javascript code, you want to add before sample code, which is usually used to boot your library.
 
-[sample docsify index.html](https://github.com/njleonzhang/vue-data-tables-doc/blob/master/index.html)
+  [sample docsify index.html](https://github.com/njleonzhang/vue-data-tables-doc/blob/master/index.html)
 
 3. write code in md
 
