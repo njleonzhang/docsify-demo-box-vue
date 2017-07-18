@@ -7,6 +7,7 @@ var baseWebpackConfig = require('./webpack.base.conf')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+var UnminifiedWebpackPlugin = require('unminified-webpack-plugin');
 
 var env = config.build.env
 
@@ -23,7 +24,7 @@ var webpackConfig = merge(baseWebpackConfig, {
   // devtool: config.build.productionSourceMap ? '#source-map' : false,
   output: {
     path: config.build.assetsRoot,
-    filename: 'docsify-demo-box.js',
+    filename: 'docsify-demo-box.min.js',
     library: 'DemoBox',
     libraryTarget: 'umd'
   },
@@ -41,6 +42,15 @@ var webpackConfig = merge(baseWebpackConfig, {
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
       'process.env': env
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      },
+      sourceMap: true
+    }),
+    new UnminifiedWebpackPlugin({
+      postfix: ''
     })
   ]
 })
