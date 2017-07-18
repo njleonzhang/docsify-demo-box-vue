@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("Vue"));
+		module.exports = factory(require("Vue"), require("marked"));
 	else if(typeof define === 'function' && define.amd)
-		define(["Vue"], factory);
+		define(["Vue", "marked"], factory);
 	else if(typeof exports === 'object')
-		exports["DemoBoxPlugin"] = factory(require("Vue"));
+		exports["DemoBoxPlugin"] = factory(require("Vue"), require("marked"));
 	else
-		root["DemoBoxPlugin"] = factory(root["Vue"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__) {
+		root["DemoBoxPlugin"] = factory(root["Vue"], root["marked"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_18__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -124,6 +124,9 @@ exports.fetch = function (str, tag) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_strip_tags___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__util_strip_tags__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__demo_block__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__demo_block___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__demo_block__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_marked__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_marked___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_marked__);
+
 
 
 
@@ -137,7 +140,7 @@ var generateComponent = function generateComponent(code, lang, jsResources, cssR
   var html = __WEBPACK_IMPORTED_MODULE_2__util_strip_tags___default.a.fetch(code, 'template');
   var style = __WEBPACK_IMPORTED_MODULE_2__util_strip_tags___default.a.fetch(code, 'style');
   var script = __WEBPACK_IMPORTED_MODULE_2__util_strip_tags___default.a.fetch(code, 'script');
-  var desc = __WEBPACK_IMPORTED_MODULE_2__util_strip_tags___default.a.fetch(code, 'desc');
+  var desc = __WEBPACK_IMPORTED_MODULE_4_marked___default()(__WEBPACK_IMPORTED_MODULE_2__util_strip_tags___default.a.fetch(code, 'desc'));
 
   var scriptStr = script.replace('export default', '').trim();
   var scriptObj = eval('(' + scriptStr + ')');
@@ -1208,7 +1211,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "meta"
   }, [_c('div', {
     staticClass: "description"
-  }, [_vm._v("\n      " + _vm._s(_vm.desc) + "\n      "), _c('button', {
+  }, [_c('div', {
+    domProps: {
+      "innerHTML": _vm._s(_vm.desc)
+    }
+  }), _vm._v(" "), _c('button', {
     staticClass: "go",
     attrs: {
       "type": "primary"
@@ -1894,6 +1901,12 @@ var create = function create(jsResources, cssResources, bootCode) {
     };
   };
 };
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_18__;
 
 /***/ })
 /******/ ]);

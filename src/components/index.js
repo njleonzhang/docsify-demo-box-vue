@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import striptags from '../util/strip-tags'
 import DemoBlock from './demo-block'
+import marked from 'marked'
 
 export let install = function() {
   Vue.component(DemoBlock.name, DemoBlock)
@@ -10,7 +11,7 @@ export let generateComponent = function(code, lang, jsResources, cssResources, b
   let html = striptags.fetch(code, 'template')
   let style = striptags.fetch(code, 'style')
   let script = striptags.fetch(code, 'script')
-  let desc = striptags.fetch(code, 'desc')
+  let desc = marked(striptags.fetch(code, 'desc'))
 
   let scriptStr = script.replace('export default', '').trim()
   let scriptObj = eval('(' + scriptStr + ')')

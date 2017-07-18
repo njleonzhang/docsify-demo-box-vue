@@ -29,7 +29,8 @@ var webpackConfig = merge(baseWebpackConfig, {
   },
   externals: {
     vue: 'Vue',
-    Prism: 'Prism'
+    Prism: 'Prism',
+    marked: 'marked'
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html

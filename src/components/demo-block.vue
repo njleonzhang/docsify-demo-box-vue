@@ -7,7 +7,7 @@
     <slot name="source"></slot>
     <div class="meta">
       <div class="description">
-        {{desc}}
+        <div v-html="desc"></div>
         <button class='go' type="primary" @click="goJsfiddle">Try in Jsfiddle!</button>
       </div>
       <div class="highlight" v-html='codePrismed'></div>
