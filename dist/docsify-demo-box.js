@@ -1842,10 +1842,13 @@ var generateComponent = function generateComponent(code, lang, jsResources, cssR
   var html = __WEBPACK_IMPORTED_MODULE_2__util_strip_tags___default.a.fetch(code, 'template');
   var style = __WEBPACK_IMPORTED_MODULE_2__util_strip_tags___default.a.fetch(code, 'style');
   var script = __WEBPACK_IMPORTED_MODULE_2__util_strip_tags___default.a.fetch(code, 'script');
-  var desc = __WEBPACK_IMPORTED_MODULE_4_marked___default()(__WEBPACK_IMPORTED_MODULE_2__util_strip_tags___default.a.fetch(code, 'desc'));
+  var descOrg = __WEBPACK_IMPORTED_MODULE_2__util_strip_tags___default.a.fetch(code, 'desc');
+  var desc = __WEBPACK_IMPORTED_MODULE_4_marked___default.a && __WEBPACK_IMPORTED_MODULE_4_marked___default()(descOrg) || descOrg;
 
-  var scriptStr = script.replace('export default', '').trim();
-  var scriptObj = eval('(' + scriptStr + ')');
+  var scriptStrOrg = '(' + script.replace('export default', '').trim() + ')';
+  var scriptStr = Babel && Babel.transform(scriptStrOrg, { presets: ['es2015'] }).code || scriptStrOrg;
+
+  var scriptObj = eval(scriptStr);
 
   scriptObj.template = html;
 

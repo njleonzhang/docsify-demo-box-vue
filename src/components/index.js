@@ -11,10 +11,13 @@ export let generateComponent = function(code, lang, jsResources, cssResources, b
   let html = striptags.fetch(code, 'template')
   let style = striptags.fetch(code, 'style')
   let script = striptags.fetch(code, 'script')
-  let desc = marked(striptags.fetch(code, 'desc'))
+  let descOrg = striptags.fetch(code, 'desc')
+  let desc = marked && marked(descOrg) || descOrg
 
-  let scriptStr = script.replace('export default', '').trim()
-  let scriptObj = eval('(' + scriptStr + ')')
+  let scriptStrOrg = '(' + script.replace('export default', '').trim() + ')'
+  let scriptStr = Babel && Babel.transform(scriptStrOrg, { presets: ['es2015'] }).code || scriptStrOrg
+
+  let scriptObj = eval(scriptStr)
 
   scriptObj.template = html
 
