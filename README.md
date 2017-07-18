@@ -48,6 +48,10 @@ window.$docsify = {
 ```// end
 ```
 
+To support es6 in `code` filed, link stand-alone babel in docsify index.html
+```
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+```
 * [sample](https://njleonzhang.github.io/vue-data-tables-doc/#/quickstart?id=hello-word)
 
 * [sample source md](https://github.com/njleonzhang/vue-data-tables-doc/blob/master/quickstart.md#hello-word)
