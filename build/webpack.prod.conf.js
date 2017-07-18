@@ -28,8 +28,13 @@ var webpackConfig = merge(baseWebpackConfig, {
     libraryTarget: 'umd'
   },
   externals: {
-    vue: 'Vue',
-    Prism: 'Prism',
+    vue: {
+      root: 'Vue',
+      commonjs: 'vue',
+      commonjs2: 'vue',
+      amd: 'vue'
+    },
+    prismjs: 'Prism',
     marked: 'marked'
   },
   plugins: [
