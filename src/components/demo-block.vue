@@ -86,6 +86,7 @@
         text-align: center;
         background: #20a0ff;
         border: none;
+        outline: none;
         border-radius: 5px;
         color: white;
         display: block;
