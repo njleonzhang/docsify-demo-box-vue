@@ -174,9 +174,9 @@ var generateComponent = function generateComponent(code, lang, jsResources, cssR
     bootCode = "";
   }
 
-  var scriptStrOrg = '(' + script.replace('export default', '').trim() + ')';
+  var scripts = script.split('export default');
+  var scriptStrOrg = '(function() {' + scripts[0] + ' ; return ' + scripts[1] + '})()';
   var scriptStr = Babel && Babel.transform(scriptStrOrg, { presets: ['es2015'] }).code || scriptStrOrg;
-
   var scriptObj = eval(scriptStr);
 
   scriptObj.template = html;

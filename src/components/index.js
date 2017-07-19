@@ -18,9 +18,9 @@ export let generateComponent = function(code, lang, jsResources, cssResources, b
     bootCode = ""
   }
 
-  let scriptStrOrg = '(' + script.replace('export default', '').trim() + ')'
+  let scripts = script.split('export default')
+  let scriptStrOrg = `(function() {${scripts[0]} ; return ${scripts[1]}})()`
   let scriptStr = Babel && Babel.transform(scriptStrOrg, { presets: ['es2015'] }).code || scriptStrOrg
-
   let scriptObj = eval(scriptStr)
 
   scriptObj.template = html
