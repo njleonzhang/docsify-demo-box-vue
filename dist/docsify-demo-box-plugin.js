@@ -169,6 +169,10 @@ var generateComponent = function generateComponent(code, lang, jsResources, cssR
   var script = __WEBPACK_IMPORTED_MODULE_2__util_strip_tags___default.a.fetch(code, 'script');
   var descOrg = __WEBPACK_IMPORTED_MODULE_2__util_strip_tags___default.a.fetch(code, 'desc');
   var desc = __WEBPACK_IMPORTED_MODULE_4_marked___default.a && __WEBPACK_IMPORTED_MODULE_4_marked___default()(descOrg) || descOrg;
+  var noBootCode = code.indexOf('/*no-boot-code*/') > -1;
+  if (noBootCode) {
+    bootCode = "";
+  }
 
   var scriptStrOrg = '(' + script.replace('export default', '').trim() + ')';
   var scriptStr = Babel && Babel.transform(scriptStrOrg, { presets: ['es2015'] }).code || scriptStrOrg;
@@ -180,7 +184,7 @@ var generateComponent = function generateComponent(code, lang, jsResources, cssR
   var jsfiddleStr = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default()({ html: html, style: style, script: script });
 
   return {
-    template: '\n      <demo-block class="demo-box"\n        :jsfiddle="jsfiddle"\n        :code="code"\n        :desc="desc"\n        :lang="lang"\n        :js-resources="jsResources"\n        :css-resources="cssResources"\n        :boot-code="bootCode">\n        <div class="source" slot="source"><my-code/></div>\n      </demo-block/>\n    ',
+    template: '\n      <demo-block class="demo-box"\n        :jsfiddle="jsfiddle"\n        :code="code"\n        :desc="desc"\n        :lang="lang"\n        :js-resources="jsResources"\n        :css-resources="cssResources"\n        :boot-code="bootCode"\n        :no-boot-code="noBootCode">\n        <div class="source" slot="source"><my-code/></div>\n      </demo-block/>\n    ',
 
     components: {
       DemoBlock: __WEBPACK_IMPORTED_MODULE_3__demo_block___default.a,
@@ -195,7 +199,8 @@ var generateComponent = function generateComponent(code, lang, jsResources, cssR
         lang: lang,
         jsResources: jsResources,
         cssResources: cssResources,
-        bootCode: bootCode
+        bootCode: bootCode,
+        noBootCode: noBootCode
       };
     }
   };
@@ -3138,7 +3143,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return this.$el.getElementsByClassName('highlight')[0].clientHeight;
     },
     codePrismed: function codePrismed() {
-      var hl = __WEBPACK_IMPORTED_MODULE_1_prismjs___default.a.highlight(__WEBPACK_IMPORTED_MODULE_0__util_strip_tags___default.a.strip(this.code, ['desc', 'lang']).replace(/\/\*.*\*\/\s*/, ''), __WEBPACK_IMPORTED_MODULE_1_prismjs___default.a.languages[this.lang] || __WEBPACK_IMPORTED_MODULE_1_prismjs___default.a.languages.markup);
+      var hl = __WEBPACK_IMPORTED_MODULE_1_prismjs___default.a.highlight(__WEBPACK_IMPORTED_MODULE_0__util_strip_tags___default.a.strip(this.code, ['desc', 'lang', 'no-boot-code']).replace(/\/\*.*\*\/\s*/g, ''), __WEBPACK_IMPORTED_MODULE_1_prismjs___default.a.languages[this.lang] || __WEBPACK_IMPORTED_MODULE_1_prismjs___default.a.languages.markup);
       return '<pre v-pre data-lang="' + this.lang + '"><code class="lang-' + this.lang + '">' + hl + '</code></pre>';
     }
   },

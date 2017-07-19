@@ -13,6 +13,10 @@ export let generateComponent = function(code, lang, jsResources, cssResources, b
   let script = striptags.fetch(code, 'script')
   let descOrg = striptags.fetch(code, 'desc')
   let desc = marked && marked(descOrg) || descOrg
+  let noBootCode = code.indexOf('/*no-boot-code*/') > -1
+  if (noBootCode) {
+    bootCode = ""
+  }
 
   let scriptStrOrg = '(' + script.replace('export default', '').trim() + ')'
   let scriptStr = Babel && Babel.transform(scriptStrOrg, { presets: ['es2015'] }).code || scriptStrOrg
@@ -32,7 +36,8 @@ export let generateComponent = function(code, lang, jsResources, cssResources, b
         :lang="lang"
         :js-resources="jsResources"
         :css-resources="cssResources"
-        :boot-code="bootCode">
+        :boot-code="bootCode"
+        :no-boot-code="noBootCode">
         <div class="source" slot="source"><my-code/></div>
       </demo-block/>
     `,
@@ -50,7 +55,8 @@ export let generateComponent = function(code, lang, jsResources, cssResources, b
         lang,
         jsResources,
         cssResources,
-        bootCode
+        bootCode,
+        noBootCode
       }
     }
   }
