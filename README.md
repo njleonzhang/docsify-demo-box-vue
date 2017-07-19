@@ -56,7 +56,9 @@ To support es6 in `code` filed, link stand-alone babel in docsify index.html
 
 * [sample source md](https://github.com/njleonzhang/vue-data-tables-doc/blob/master/quickstart.md#hello-word)
 
+
 for some sample, if you donot want the global bootcode, add comment:
 ```
 /*no-boot-code*/
 ```
+[sample](https://github.com/njleonzhang/vue-data-tables-doc/blob/master/searchBoxFilter.md#customize-filter-logic)
