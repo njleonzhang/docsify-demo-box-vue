@@ -1021,6 +1021,14 @@ var generateComponent = function generateComponent(code, lang, jsResources, cssR
     bootCode = "";
   }
 
+  var allJsResources = jsResources;
+
+  var extraJsMatchStr = code.match(/\/\*\s*jsResource.*\*\//);
+  var jsList = extraJsMatchStr.substring(13, extraJsMatchStr.length - 2).split(' ');
+  for (var js in jsList) {
+    allJsResources += '\n<script src="' + js + '"></script>';
+  }
+
   var scripts = script.split('export default');
   var scriptStrOrg = '(function() {' + scripts[0] + ' ; return ' + scripts[1] + '})()';
   var scriptStr = Babel && Babel.transform(scriptStrOrg, { presets: ['es2015'] }).code || scriptStrOrg;
@@ -1031,7 +1039,7 @@ var generateComponent = function generateComponent(code, lang, jsResources, cssR
   var jsfiddleStr = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default()({ html: html, style: style, script: script });
 
   return {
-    template: '\n      <demo-block class="demo-box"\n        :jsfiddle="jsfiddle"\n        :code="code"\n        :desc="desc"\n        :lang="lang"\n        :js-resources="jsResources"\n        :css-resources="cssResources"\n        :boot-code="bootCode"\n        :no-boot-code="noBootCode">\n        <div class="source" slot="source"><my-code/></div>\n      </demo-block/>\n    ',
+    template: '\n      <demo-block class="demo-box"\n        :jsfiddle="jsfiddle"\n        :code="code"\n        :desc="desc"\n        :lang="lang"\n        :js-resources="allJsResources"\n        :css-resources="cssResources"\n        :boot-code="bootCode"\n        :no-boot-code="noBootCode">\n        <div class="source" slot="source"><my-code/></div>\n      </demo-block/>\n    ',
 
     components: {
       DemoBlock: __WEBPACK_IMPORTED_MODULE_3__demo_block___default.a,
@@ -1044,7 +1052,7 @@ var generateComponent = function generateComponent(code, lang, jsResources, cssR
         code: code,
         desc: desc,
         lang: lang,
-        jsResources: jsResources,
+        allJsResources: allJsResources,
         cssResources: cssResources,
         bootCode: bootCode,
         noBootCode: noBootCode

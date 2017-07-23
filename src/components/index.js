@@ -18,6 +18,17 @@ export let generateComponent = function(code, lang, jsResources, cssResources, b
     bootCode = ""
   }
 
+  let allJsResources = jsResources;
+
+  let extraJsMatchStrList = code.match(/\/\*\s*jsResource.*\*\//)
+  if (!!extraJsMatchStrList) {
+    let extraJsMatchStr = extraJsMatchStrList[0]
+    let jsList = extraJsMatchStr.substring(13, extraJsMatchStr.length - 2).split(' ')
+    for(let js of jsList) {
+      allJsResources += `\n<script src="${js}"></script>`
+    }
+  }
+
   let scripts = script.split('export default')
   let scriptStrOrg = `(function() {${scripts[0]} ; return ${scripts[1]}})()`
   let scriptStr = Babel && Babel.transform(scriptStrOrg, { presets: ['es2015'] }).code || scriptStrOrg
@@ -34,7 +45,7 @@ export let generateComponent = function(code, lang, jsResources, cssResources, b
         :code="code"
         :desc="desc"
         :lang="lang"
-        :js-resources="jsResources"
+        :js-resources="allJsResources"
         :css-resources="cssResources"
         :boot-code="bootCode"
         :no-boot-code="noBootCode">
@@ -53,7 +64,7 @@ export let generateComponent = function(code, lang, jsResources, cssResources, b
         code,
         desc,
         lang,
-        jsResources,
+        allJsResources,
         cssResources,
         bootCode,
         noBootCode
