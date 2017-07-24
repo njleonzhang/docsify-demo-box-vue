@@ -56,22 +56,25 @@ To support es6 in `code` filed, link stand-alone babel in docsify index.html
 
 * [sample source md](https://github.com/njleonzhang/vue-data-tables/blob/master/docs/quickstart.md#hello-word)
 
-# /*no-boot-code*/
+# comments
+For special code sample, you may need some special config, use `comment`s to implement
 
-for some sample, if you donot want the global bootcode, add comment:
+## don't embed the global bootcode
+
+If you donot want the global bootcode configed by `DemoBoxPlugin.create` for some samples, add comment:
 
 ```
 /*no-boot-code*/
 ```
-[sample code](https://github.com/njleonzhang/vue-data-tables/blob/master/docs/searchBoxFilter.md#customize-filter-logic)
-[sample](https://njleonzhang.github.io/vue-data-tables/#/searchBoxFilter?id=customize-filter-logic)
+* [sample code](https://github.com/njleonzhang/vue-data-tables/blob/master/docs/searchBoxFilter.md#customize-filter-logic)
+* [sample](https://njleonzhang.github.io/vue-data-tables/#/searchBoxFilter?id=customize-filter-logic)
 
-# /*jsResource [jslink]*/
+## special js link
 
-if you want to add special jsResource for some sample, use `jsResource` comments
+If you want to add special jsResource for some samples, use `jsResource` comments
 
 ```
-/*jsResource [jslink]*/
+/*jsResource [jslink1 jslink2 ....]*/
 ```
-[sample code](https://github.com/njleonzhang/vue-data-tables/blob/master/docs/event.md#filtered-data)
-[sample](https://njleonzhang.github.io/vue-data-tables/#/event?id=filtered-data)
+* [sample code](https://github.com/njleonzhang/vue-data-tables/blob/master/docs/event.md#filtered-data)
+* [sample](https://njleonzhang.github.io/vue-data-tables/#/event?id=filtered-data)
