@@ -74,7 +74,7 @@ If you donot want the global bootcode configed by `DemoBoxPlugin.create` for som
 If you want to add special jsResource for some samples, use `jsResource` comments
 
 ```
-/*jsResource [jslink1 jslink2 ....]*/
+/*jsResource jslink1 jslink2 ...*/
 ```
 * [sample code](https://github.com/njleonzhang/vue-data-tables/blob/master/docs/event.md#filtered-data)
 * [sample](https://njleonzhang.github.io/vue-data-tables/#/event?id=filtered-data)
