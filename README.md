@@ -24,7 +24,7 @@ window.$docsify = {
 * cssResources: css `link` will be added in jsfiddle `css` filed
 * bootCode: javascript code, you want to add before sample code in jsfiddle `javascript` filed, which is usually used to boot your library.
 
-  [sample docsify index.html](https://github.com/njleonzhang/vue-data-tables-doc/blob/master/index.html)
+  [sample docsify index.html](https://github.com/njleonzhang/vue-data-tables/blob/master/docs/index.html)
 
 3. write code in md
 
@@ -52,13 +52,26 @@ To support es6 in `code` filed, link stand-alone babel in docsify index.html
 ```
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 ```
-* [sample](https://njleonzhang.github.io/vue-data-tables-doc/#/quickstart?id=hello-word)
+* [sample](https://njleonzhang.github.io/vue-data-tables/#/quickstart?id=hello-word)
 
-* [sample source md](https://github.com/njleonzhang/vue-data-tables-doc/blob/master/quickstart.md#hello-word)
+* [sample source md](https://github.com/njleonzhang/vue-data-tables/blob/master/docs/quickstart.md#hello-word)
 
+# /*no-boot-code*/
 
 for some sample, if you donot want the global bootcode, add comment:
+
 ```
 /*no-boot-code*/
 ```
-[sample](https://github.com/njleonzhang/vue-data-tables-doc/blob/master/searchBoxFilter.md#customize-filter-logic)
+[sample code](https://github.com/njleonzhang/vue-data-tables/blob/master/docs/searchBoxFilter.md#customize-filter-logic)
+[sample](https://njleonzhang.github.io/vue-data-tables/#/searchBoxFilter?id=customize-filter-logic)
+
+# /*jsResource [jslink]*/
+
+if you want to add special jsResource for some sample, use `jsResource` comments
+
+```
+/*jsResource [jslink]*/
+```
+[sample code](https://github.com/njleonzhang/vue-data-tables/blob/master/docs/event.md#filtered-data)
+[sample](https://njleonzhang.github.io/vue-data-tables/#/event?id=filtered-data)
