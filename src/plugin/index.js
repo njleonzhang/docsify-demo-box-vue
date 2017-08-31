@@ -5,6 +5,7 @@ install(Vue)
 
 export let create = function(jsResources, cssResources, bootCode) {
   return function(hook, vm) {
+    let id = 0
     window.$docsify.markdown = {
       renderer: {
         code: function(code, lang) {

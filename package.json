@@ -8,7 +8,7 @@
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
-    "plugin": "node build/build.js plugin"
+    "plugin": "node build/build.js plugin; cp dist/docsify-demo-box-plugin.js docs/"
   },
   "dependencies": {
     "vue": "^2.3.3"
