@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import {generateComponent, install} from '../components/'
+import {generateComponent} from '../components/'
 
 export let create = function(jsResources, cssResources, bootCode) {
   return function(hook, vm) {
