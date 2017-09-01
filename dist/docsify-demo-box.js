@@ -840,7 +840,7 @@ var generateComponent = function generateComponent(code, lang, jsResources, cssR
 
   var extraJsMatchStrList = code.match(/\/\*\s*jsResource(.*)\*\//);
   if (!!extraJsMatchStrList) {
-    var jsList = extraJsMatchStrList[1];
+    var jsList = extraJsMatchStrList[1].split(' ');
     var _iteratorNormalCompletion = true;
     var _didIteratorError = false;
     var _iteratorError = undefined;
