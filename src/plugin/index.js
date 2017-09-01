@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import {generateComponent, install} from '../components/'
 
-install(Vue)
-
 export let create = function(jsResources, cssResources, bootCode) {
   return function(hook, vm) {
     let id = 0
