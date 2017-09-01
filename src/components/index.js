@@ -20,10 +20,9 @@ export let generateComponent = function(code, lang, jsResources, cssResources, b
 
   let allJsResources = jsResources;
 
-  let extraJsMatchStrList = code.match(/\/\*\s*jsResource.*\*\//)
+  let extraJsMatchStrList = code.match(/\/\*\s*jsResource(.*)\*\//)
   if (!!extraJsMatchStrList) {
-    let extraJsMatchStr = extraJsMatchStrList[0]
-    let jsList = extraJsMatchStr.substring(13, extraJsMatchStr.length - 2).split(' ')
+    let jsList = extraJsMatchStrList[1]
     for(let js of jsList) {
       allJsResources += `\n<script src="${js}"></script>`
     }
