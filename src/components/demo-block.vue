@@ -214,7 +214,7 @@
     methods: {
       goJsfiddle() {
         const { script, html, style } = this.jsfiddle;
-        let jsTpl = this.bootCode + (script || '').replace(/export default/, 'var Main =').trim();
+        let jsTpl = this.bootCode + '\n' + (script || '').replace(/export default/, 'var Main =').trim();
         let htmlTpl = `${this.jsResources}\n<div id="app">\n${html.trim()}\n</div>`;
         let cssTpl = `${this.cssResources}\n${(style || '').trim()}\n`;
 

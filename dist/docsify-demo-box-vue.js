@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["vue"], factory);
 	else if(typeof exports === 'object')
-		exports["DemoBoxPlugin"] = factory(require("vue"));
+		exports["DemoBoxVue"] = factory(require("vue"));
 	else
-		root["DemoBoxPlugin"] = factory(root["Vue"]);
+		root["DemoBoxVue"] = factory(root["Vue"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_14__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -481,8 +481,8 @@ module.exports = g;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return install; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return generateComponent; });
+/* unused harmony export install */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return generateComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_get_iterator__ = __webpack_require__(29);
@@ -519,10 +519,9 @@ var generateComponent = function generateComponent(code, lang, jsResources, cssR
 
   var allJsResources = jsResources;
 
-  var extraJsMatchStrList = code.match(/\/\*\s*jsResource.*\*\//);
+  var extraJsMatchStrList = code.match(/\/\*\s*jsResource\s*(.*\S)\s*\*\//);
   if (!!extraJsMatchStrList) {
-    var extraJsMatchStr = extraJsMatchStrList[0];
-    var jsList = extraJsMatchStr.substring(13, extraJsMatchStr.length - 2).split(' ');
+    var jsList = extraJsMatchStrList[1].split(' ');
     var _iteratorNormalCompletion = true;
     var _didIteratorError = false;
     var _iteratorError = undefined;
@@ -813,7 +812,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           html = _jsfiddle.html,
           style = _jsfiddle.style;
 
-      var jsTpl = this.bootCode + (script || '').replace(/export default/, 'var Main =').trim();
+      var jsTpl = this.bootCode + '\n' + (script || '').replace(/export default/, 'var Main =').trim();
       var htmlTpl = this.jsResources + '\n<div id="app">\n' + html.trim() + '\n</div>';
       var cssTpl = this.cssResources + '\n' + (style || '').trim() + '\n';
 
@@ -898,8 +897,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__components___["a" /* install */])(__WEBPACK_IMPORTED_MODULE_0_vue___default.a);
-
 var create = function create(jsResources, cssResources, bootCode) {
   return function (hook, vm) {
     var id = 0;
@@ -908,7 +905,7 @@ var create = function create(jsResources, cssResources, bootCode) {
         code: function code(_code, lang) {
           if (/^\/\*\s*vue\s*\*\//.test(_code)) {
             id++;
-            var DemoBlockWrapper = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__components___["b" /* generateComponent */])(_code, lang, jsResources, cssResources, bootCode);
+            var DemoBlockWrapper = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__components___["a" /* generateComponent */])(_code, lang, jsResources, cssResources, bootCode);
             __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('DemoBox' + id, DemoBlockWrapper);
             return '<' + 'demo-box-' + id + '></demo-box-' + id + '>';
           } else {
@@ -3888,7 +3885,7 @@ var content = __webpack_require__(61);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(69)("063272c9", content, true);
+var update = __webpack_require__(69)("45a37f4f", content, true);
 
 /***/ }),
 /* 69 */

@@ -24,8 +24,8 @@ var webpackConfig = merge(baseWebpackConfig, {
   // devtool: config.build.productionSourceMap ? '#source-map' : false,
   output: {
     path: config.build.assetsRoot,
-    filename: 'docsify-demo-box-plugin.min.js',
-    library: 'DemoBoxPlugin',
+    filename: 'docsify-demo-box-vue.min.js',
+    library: 'DemoBoxVue',
     libraryTarget: 'umd'
   },
   externals: {

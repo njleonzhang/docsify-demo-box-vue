@@ -18,9 +18,9 @@ export let generateComponent = function(code, lang, jsResources, cssResources, b
     bootCode = ""
   }
 
-  let allJsResources = jsResources;
+  let allJsResources = jsResources
 
-  let extraJsMatchStrList = code.match(/\/\*\s*jsResource(.*)\*\//)
+  let extraJsMatchStrList = code.match(/\/\*\s*jsResource\s*(.*\S)\s*\*\//)
   if (!!extraJsMatchStrList) {
     let jsList = extraJsMatchStrList[1].split(' ')
     for(let js of jsList) {

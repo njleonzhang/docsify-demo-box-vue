@@ -1,14 +1,13 @@
 {
-  "name": "element-demo-box",
+  "name": "docsify-demo-box-vue",
   "version": "1.0.0",
-  "description": "element-ui demo box, write demo in document and preview in jsfiddle",
+  "description": "write Vue demo in docsify with instant preview and jsfiddle integration",
   "author": "njleonzhang <scream3616@sina.com>",
-  "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
-    "plugin": "node build/build.js plugin; cp dist/docsify-demo-box-plugin.js docs/"
+    "plugin": "node build/build.js plugin; cp dist/docsify-demo-box-vue.js docs/"
   },
   "dependencies": {
     "vue": "^2.3.3"
