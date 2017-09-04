@@ -1,5 +1,11 @@
-import Vue from 'vue'
 import {generateComponent} from '../components/'
+import ReactDOM from  'react-dom'
+
+function renderComponent(Component, id) {
+  setTimeout(function () {
+    ReactDOM.render(Component(), document.getElementById(id + ''))
+  })
+}
 
 export let create = function(jsResources, cssResources, bootCode) {
   return function(hook, vm) {
@@ -7,14 +13,14 @@ export let create = function(jsResources, cssResources, bootCode) {
     window.$docsify.markdown = {
       renderer: {
         code: function(code, lang) {
-          if (/^\/\*\s*vue\s*\*\//.test(code)) {
+          if (/^\/\*\s*react\s*\*\//.test(code)) {
             id++
-            var DemoBlockWrapper = generateComponent(code, lang, jsResources, cssResources, bootCode)
-            Vue.component('DemoBox' + id, DemoBlockWrapper)
-            return '<' + 'demo-box-' + id + '></demo-box-' + id + '>'
+            let Component = generateComponent(code, lang, jsResources, cssResources, bootCode)
+            renderComponent(Component, id)
+            return '<div id="' + id + '"/></div/>'
           } else {
             lang = lang || ''
-            var hl = Prism.highlight(code, Prism.languages[lang] || Prism.languages.markup)
+            let hl = Prism.highlight(code, Prism.languages[lang] || Prism.languages.markup)
             return '<pre v-pre data-lang="' + lang + '"><code class="lang-' + lang + '">' + hl + '</code></pre>'
           }
         }

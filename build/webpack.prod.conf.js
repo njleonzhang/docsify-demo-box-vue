@@ -4,42 +4,31 @@ var webpack = require('webpack')
 var config = require('../config')
 var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
-var CopyWebpackPlugin = require('copy-webpack-plugin')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var UnminifiedWebpackPlugin = require('unminified-webpack-plugin');
 
-var env = config.build.env
+var env = process.env.NODE_ENV === 'testing'
+  ? require('../config/test.env')
+  : config.build.env
 
 var webpackConfig = merge(baseWebpackConfig, {
-  entry: {
-    app: './src/components/index.js'
-  },
   module: {
     rules: utils.styleLoaders({
       sourceMap: config.build.productionSourceMap,
-      extract: true
+      // extract: false
     })
   },
-  // devtool: config.build.productionSourceMap ? '#source-map' : false,
+  devtool: config.build.productionSourceMap ? '#source-map' : false,
   output: {
     path: config.build.assetsRoot,
-    filename: 'docsify-demo-box.min.js',
-    library: 'DemoBox',
+    filename: 'docsify-demo-box-react.min.js',
+    library: 'DemoBoxReact',
     libraryTarget: 'umd'
   },
   externals: {
-    vue: {
-      root: 'Vue',
-      commonjs: 'vue',
-      commonjs2: 'vue',
-      amd: 'vue'
-    },
-    prismjs: 'Prism',
-    marked: 'marked'
+    react: 'React',
+    'react-doom': 'ReactDOM'
   },
   plugins: [
-    // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
       'process.env': env
     }),
@@ -54,5 +43,6 @@ var webpackConfig = merge(baseWebpackConfig, {
     })
   ]
 })
+
 
 module.exports = webpackConfig

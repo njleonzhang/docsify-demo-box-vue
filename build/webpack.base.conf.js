@@ -1,6 +1,9 @@
 var path = require('path')
 var utils = require('./utils')
 var config = require('../config')
+var webpack = require('webpack')
+
+var projectRoot = path.resolve(__dirname, '../')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -8,7 +11,7 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: resolve('./src/plugin/index.js')
   },
   output: {
     path: config.build.assetsRoot,
@@ -18,22 +21,22 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
+    modules: [
+      resolve('src'),
+      resolve('node_modules'),
+    ],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src')
+      '@src': resolve('src'),
     }
   },
   module: {
     rules: [
       {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-      },
-      {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test')]
+        include: projectRoot,
+        exclude: /node_modules/
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -52,5 +55,11 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      React: 'react',
+      Component: ['react', 'Component']
+    })
+  ]
 }
