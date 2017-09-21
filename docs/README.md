@@ -41,6 +41,11 @@ This doc is a sample, check the source [md](https://njleonzhang.github.io/docsif
 write the following code with tag `/*vue*/`:
 
 ```html
+<desc>
+Hello `world`
+* a
+* b
+</desc>
 <template>
     <div>
         <div className='wrapper'>
@@ -76,6 +81,11 @@ it will render as:
 
 ```html
 /*vue*/
+<desc>
+Hello `world`
+* a
+* b
+</desc>
 <template>
     <div>
         <div className='wrapper'>
@@ -110,6 +120,8 @@ it will render as:
 The sample code is rendered on the page instantly, so the people who read your document can see the preview immediately.
 If he/she expands the demo box, the source code and description are shown there.
 Click the button `Try in Jsfiddle`, `jsfiddle.net` will be open with the code of this sample.
+
+> `desc` tag can be used to add description for the sample. `Markdown` syntax is supported
 
 ## Advanced options, AKA comments
 
