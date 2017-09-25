@@ -10,3 +10,11 @@ Click the button `Try in Jsfiddle`, `jsfiddle.net` will be open with the code of
 [Doc](https://njleonzhang.github.io/docsify-demo-box-vue/)
 
 This plugin is for Vue. For Vue, please use [docsify-demo-box-react](https://njleonzhang.github.io/docsify-demo-box-react)
+
+## Showcase
+
+These projects are using `docsify-demo-box-vue`. Pull requests welcome :blush:
+
+| Project | Description |
+|---|---|
+| [vue-data-tables](https://github.com/njleonzhang/vue-data-tables/) | A simple and customizable data table，based on vue2 and element-ui. |
