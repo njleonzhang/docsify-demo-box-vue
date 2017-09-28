@@ -1,6 +1,6 @@
 {
   "name": "docsify-demo-box-vue",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "write Vue demo in docsify with instant preview and jsfiddle integration",
   "author": "njleonzhang <scream3616@sina.com>",
   "scripts": {
