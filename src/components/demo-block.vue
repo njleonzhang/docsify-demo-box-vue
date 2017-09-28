@@ -150,11 +150,11 @@
         line-height: 36px;
         transition: .3s;
         display: inline-block;
-      }
+        color: #58B7FF;
 
-      &:hover {
-        color: #20a0ff;
-        background-color: #f9fafc;
+        &:hover {
+          color: #1D8CE0;
+        }
       }
 
       & .text-slide-enter,

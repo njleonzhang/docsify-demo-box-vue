@@ -16,7 +16,44 @@ let cssResources = '@import url("//unpkg.com/element-ui/lib/theme-default/index.
 
 let bootCode = 'Vue.use(DataTables)\n'
 
-let DemoBlockWrapper = generateComponent('<desc>`test` hello-word ```dawdawk```</desc><template><div>Hello, {{ name }}!</div></template>\n<script>export default {data(){return {name: "vue"}}}<\/script>', 'html', jsResources, cssResources, bootCode)
+let code = `
+<desc>
+  Hello \`world\`
+  * a
+  * b
+</desc>
+<template>
+  <div>
+    <div className='wrapper'>
+      <div>
+        <p>author: {{author}}</p>
+        <button :style="style" @click="onClick">test</button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        author: 'leon',
+        style: {
+          color: 'blue'
+        }
+      }
+    },
+    methods: {
+      onClick() {
+        alert('author: ' + this.globalVariable)
+        this.style.color = 'red'
+      }
+    }
+  }
+`
+
+
+let DemoBlockWrapper = generateComponent(code, 'html', jsResources, cssResources, bootCode)
 
 export default {
   name: 'app',
