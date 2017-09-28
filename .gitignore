@@ -10,3 +10,5 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+
+docs/docsify-demo-box-vue.js
