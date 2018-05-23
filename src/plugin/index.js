@@ -7,7 +7,7 @@ export let create = function(jsResources, cssResources, bootCode) {
     window.$docsify.markdown = {
       renderer: {
         code: function(code, lang) {
-          if (/^\/\*\s*vue\s*\*\//.test(code)) {
+          if (/^\s*\/\*\s*vue\s*\*\//.test(code)) {
             id++
             var DemoBlockWrapper = generateComponent(code, lang, jsResources, cssResources, bootCode)
             Vue.component('DemoBox' + id, DemoBlockWrapper)
