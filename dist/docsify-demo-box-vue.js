@@ -909,23 +909,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+var createCodeFn = function createCodeFn(oCodeFn) {
+  var id = 0;
+
+  return function (code, lang) {
+    if (/^\s*\/\*\s*vue\s*\*\//.test(code)) {
+      id++;
+      var DemoBlockWrapper = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__components___["a" /* generateComponent */])(code, lang, jsResources, cssResources, bootCode);
+      __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('DemoBox' + id, DemoBlockWrapper);
+      return '<' + 'demo-box-' + id + '></demo-box-' + id + '>';
+    } else {
+      if (oCodeFn) {
+        return oCodeFn.apply(this, arguments);
+      } else {
+        lang = lang || '';
+        var hl = Prism.highlight(code, Prism.languages[lang] || Prism.languages.markup);
+        return '<pre v-pre data-lang="' + lang + '"><code class="lang-' + lang + '">' + hl + '</code></pre>';
+      }
+    }
+  };
+};
+
 var create = function create(jsResources, cssResources, bootCode) {
   return function (hook, vm) {
-    var id = 0;
     window.$docsify.markdown = {
       renderer: {
-        code: function code(_code, lang) {
-          if (/^\s*\/\*\s*vue\s*\*\//.test(_code)) {
-            id++;
-            var DemoBlockWrapper = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__components___["a" /* generateComponent */])(_code, lang, jsResources, cssResources, bootCode);
-            __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('DemoBox' + id, DemoBlockWrapper);
-            return '<' + 'demo-box-' + id + '></demo-box-' + id + '>';
-          } else {
-            lang = lang || '';
-            var hl = Prism.highlight(_code, Prism.languages[lang] || Prism.languages.markup);
-            return '<pre v-pre data-lang="' + lang + '"><code class="lang-' + lang + '">' + hl + '</code></pre>';
-          }
-        }
+        code: createCodeFn(window.$docsify.markdown && window.$docsify.markdown.renderer && window.$docsify.markdown.renderer.code)
       }
     };
   };
