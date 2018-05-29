@@ -47,11 +47,12 @@ export let generateComponent = function(code, lang, jsResources, cssResources, b
         :js-resources="allJsResources"
         :css-resources="cssResources"
         :boot-code="bootCode"
-        :no-boot-code="noBootCode">
+        :no-boot-code="noBootCode"
+      >
         <div class="source" slot="source">
           <my-code></my-code>
         </div>
-      </demo-block/>
+      </demo-block>
     `,
 
     components: {
