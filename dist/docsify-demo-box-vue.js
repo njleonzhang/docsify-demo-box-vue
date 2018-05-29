@@ -570,7 +570,7 @@ var generateComponent = function generateComponent(code, lang, jsResources, cssR
   var jsfiddleStr = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default()({ html: html, style: style, script: script });
 
   return {
-    template: '\n      <demo-block class="demo-box"\n        :jsfiddle="jsfiddle"\n        :code="code"\n        :desc="desc"\n        :lang="lang"\n        :js-resources="allJsResources"\n        :css-resources="cssResources"\n        :boot-code="bootCode"\n        :no-boot-code="noBootCode">\n        <div class="source" slot="source">\n          <my-code></my-code>\n        </div>\n      </demo-block/>\n    ',
+    template: '\n      <demo-block class="demo-box"\n        :jsfiddle="jsfiddle"\n        :code="code"\n        :desc="desc"\n        :lang="lang"\n        :js-resources="allJsResources"\n        :css-resources="cssResources"\n        :boot-code="bootCode"\n        :no-boot-code="noBootCode"\n      >\n        <div class="source" slot="source">\n          <my-code></my-code>\n        </div>\n      </demo-block>\n    ',
 
     components: {
       DemoBlock: __WEBPACK_IMPORTED_MODULE_4__demo_block___default.a,
