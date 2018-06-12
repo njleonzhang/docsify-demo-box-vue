@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import {generateComponent} from './components'
+import { generateComponent } from './components'
 
 let jsResources = '<scr' + 'ipt src="//unpkg.com/vue/dist/vue.js"></scr' + 'ipt>'
   + '\n<scr' + `ipt src="//unpkg.com/element-ui/lib/index.js"></scr` + 'ipt>'

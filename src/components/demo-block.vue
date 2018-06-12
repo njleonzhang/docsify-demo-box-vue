@@ -5,14 +5,17 @@
     @mouseenter="hovering = true"
     @mouseleave="hovering = false">
     <slot name="source"></slot>
-    <div class="meta">
+    <div class="meta" ref="meta">
       <div class="description">
         <div v-html="desc"></div>
         <button class='go' type="primary" @click="goJsfiddle">Try in Jsfiddle!</button>
       </div>
       <div class="highlight" v-html='codePrismed'></div>
     </div>
-    <div class="demo-block-control" @click="isExpanded = !isExpanded">
+    <div class="demo-block-control"
+      ref="control"
+      :class="{ 'is-fixed': fixedControl }"
+      @click="isExpanded = !isExpanded">
       <transition name="arrow-slide"></transition>
       <transition name="text-slide">
         <span>{{ controlText }}</span>
@@ -134,6 +137,12 @@
       transition: .2s;
       position: relative;
 
+      &.is-fixed {
+        position: fixed;
+        bottom: 0;
+        width: 868px;
+      }
+
       i {
         font-size: 12px;
         line-height: 36px;
@@ -175,6 +184,8 @@
       return {
         hovering: false,
         isExpanded: false,
+        fixedControl: false,
+        scrollParent: null,
       }
     },
 
@@ -208,6 +219,10 @@
       bootCode: {
         type: String,
         default: ''
+      },
+      scrollParentSelector: {
+        type: String,
+        default: '.section'
       }
     },
 
@@ -248,6 +263,16 @@
 
         form.submit();
       },
+      scrollHandler() {
+        const { top, bottom, left, right } = this.$refs.meta.getBoundingClientRect();
+        this.fixedControl = bottom > document.documentElement.clientHeight &&
+          top + 36 <= document.documentElement.clientHeight;
+        this.$refs.control.style.left = this.fixedControl ? `${ left }px` : '0';
+        this.$refs.control.style.width = this.fixedControl ? `${ right - left }px` : 'auto';
+      },
+      removeScrollHandler() {
+        this.scrollParent && this.scrollParent.removeEventListener('scroll', this.scrollHandler);
+      }
     },
 
     computed: {
@@ -265,6 +290,7 @@
         }
         return this.$el.getElementsByClassName('highlight')[0].clientHeight;
       },
+
       codePrismed() {
         var hl = Prism.highlight(striptags.strip(this.code, ['desc', 'lang', 'no-boot-code']).replace(/\/\*.*\*\/\s*/g, ''), Prism.languages[this.lang] || Prism.languages.markup)
         return '<pre v-pre data-lang="' + this.lang + '"><code class="lang-' + this.lang + '">' + hl + '</code></pre>'
@@ -274,6 +300,17 @@
     watch: {
       isExpanded(val) {
         this.codeArea.style.height = val ? `${ this.codeAreaHeight + 1 }px` : '0';
+
+        if (!val) {
+          this.fixedControl = false;
+          this.removeScrollHandler();
+          this.scrollHandler();
+        }
+        setTimeout(() => {
+          this.scrollParent = document.querySelector(this.scrollParentSelector) || window;
+          this.scrollParent && this.scrollParent.addEventListener('scroll', this.scrollHandler);
+          this.scrollHandler();
+        }, 200);
       }
     },
 
@@ -285,6 +322,10 @@
           highlight.borderRight = 'none';
         }
       });
+    },
+
+    beforeDestroy() {
+      this.removeScrollHandler();
     }
   };
 </script>
