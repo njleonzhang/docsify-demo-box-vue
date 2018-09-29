@@ -123,6 +123,10 @@
       }
     }
 
+    .lang-css {
+      padding-bottom: 0;
+    }
+
     .demo-block-control {
       border-top: solid 1px #eaeefb;
       height: 36px;
@@ -178,6 +182,8 @@
 <script type="text/babel">
   import striptags from '../util/strip-tags'
   import Prism from 'prismjs'
+  import createStyle from '../util/createStyle'
+
   export default {
     name: 'demo-block',
     data() {
@@ -292,8 +298,24 @@
       },
 
       codePrismed() {
-        var hl = Prism.highlight(striptags.strip(this.code, ['desc', 'lang', 'no-boot-code']).replace(/\/\*.*\*\/\s*/g, ''), Prism.languages[this.lang] || Prism.languages.markup)
-        return '<pre v-pre data-lang="' + this.lang + '"><code class="lang-' + this.lang + '">' + hl + '</code></pre>'
+        createStyle(this.jsfiddle.style)
+
+        const hlcss = Prism.highlight(
+          this.code,
+          Prism.languages.css || Prism.languages.markup)
+
+        let hljs = Prism.highlight(striptags.strip(this.code, ['desc', 'lang', 'no-boot-code']).replace(/\/\*.*\*\/\s*/g, ''), Prism.languages[this.lang] || Prism.languages.markup)
+
+        const cssPrismed = hlcss ? `<pre data-lang="css">
+          <code class="lang-css">${hlcss}</code>
+        </pre>` : ''
+
+        const jsPrismed = `<pre data-lang="${this.lang}">
+          <code class="lang-${this.lang}">${hljs}</code>
+        </pre>`
+
+
+        return cssPrismed + jsPrismed;
       }
     },
 
