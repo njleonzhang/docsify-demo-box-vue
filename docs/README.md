@@ -46,9 +46,16 @@ Hello `world`
 * a
 * b
 </desc>
+
+<style>
+    .wrapper {
+        font-size: 20px;
+    }
+</style>
+
 <template>
     <div>
-        <div className='wrapper'>
+        <div class='wrapper'>
             <div>
                 <p>author: {{globalVariable}}</p>
                 <button :style="style" @click="onClick">test</button>
@@ -86,9 +93,16 @@ Hello `world`
 * a
 * b
 </desc>
+
+<style>
+    .wrapper {
+        font-size: 20px;
+    }
+</style>
+
 <template>
     <div>
-        <div className='wrapper'>
+        <div class='wrapper'>
             <div>
                 <p>author: {{globalVariable}}</p>
                 <button :style="style" @click="onClick">test</button>

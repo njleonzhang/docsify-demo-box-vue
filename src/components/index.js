@@ -34,6 +34,7 @@ export let generateComponent = function(code, lang, jsResources, cssResources, b
   let scriptObj = eval(scriptStr)
 
   scriptObj.template = html
+  scriptObj.style = style
 
   let jsfiddleStr = JSON.stringify({html, style, script})
 

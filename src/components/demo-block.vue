@@ -300,22 +300,11 @@
       codePrismed() {
         createStyle(this.jsfiddle.style)
 
-        const hlcss = Prism.highlight(
-          this.code,
-          Prism.languages.css || Prism.languages.markup)
+        let hl = Prism.highlight(striptags.strip(this.code, ['desc', 'lang', 'no-boot-code']).replace(/\/\*.*\*\/\s*/g, ''), Prism.languages[this.lang] || Prism.languages.markup)
 
-        let hljs = Prism.highlight(striptags.strip(this.code, ['desc', 'lang', 'no-boot-code']).replace(/\/\*.*\*\/\s*/g, ''), Prism.languages[this.lang] || Prism.languages.markup)
-
-        const cssPrismed = hlcss ? `<pre data-lang="css">
-          <code class="lang-css">${hlcss}</code>
-        </pre>` : ''
-
-        const jsPrismed = `<pre data-lang="${this.lang}">
-          <code class="lang-${this.lang}">${hljs}</code>
+        return `<pre data-lang="${this.lang}">
+          <code class="lang-${this.lang}">${hl}</code>
         </pre>`
-
-
-        return cssPrismed + jsPrismed;
       }
     },
 

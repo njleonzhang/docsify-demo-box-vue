@@ -1,13 +1,13 @@
 {
   "name": "docsify-demo-box-vue",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "description": "write Vue demo in docsify with instant preview and jsfiddle integration",
   "author": "njleonzhang <scream3616@sina.com>",
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
-    "plugin": "node build/build.js plugin; cp dist/docsify-demo-box-vue.js docs/",
+    "plugin": "node build/build.js plugin",
     "release": "build/release.sh"
   },
   "dependencies": {
