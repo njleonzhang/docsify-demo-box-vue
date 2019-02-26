@@ -24,12 +24,9 @@ let createCodeFn = function(oCodeFn) {
 
 export let create = function(jsResources, cssResources, bootCode) {
   return function(hook, vm) {
-    window.$docsify.markdown = {
-      renderer: {
-        code: createCodeFn(window.$docsify.markdown &&
-          window.$docsify.markdown.renderer &&
-        window.$docsify.markdown.renderer.code)
-      }
-    }
+    window.$docsify.markdown = window.$docsify.markdown || {}
+    window.$docsify.markdown.renderer = window.$docsify.markdown.renderer || {}
+
+    window.$docsify.markdown.renderer.code = createCodeFn(window.$docsify.markdown.renderer.code)
   }
 }

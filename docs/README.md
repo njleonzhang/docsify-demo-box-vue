@@ -4,6 +4,10 @@
 
 This plugin is for Vue. For React, please use [docsify-demo-box-react](https://njleonzhang.github.io/docsify-demo-box-react/)
 
+1
+2
+3
+
 ## Usage
 
 1. import vue and this plugin to docsify `index.html`

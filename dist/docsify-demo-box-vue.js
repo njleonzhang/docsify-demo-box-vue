@@ -109,7 +109,7 @@ $exports.store = store;
 /* 2 */
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.5.6' };
+var core = module.exports = { version: '2.6.5' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -446,7 +446,7 @@ var store = global[SHARED] || (global[SHARED] = {});
 })('versions', []).push({
   version: core.version,
   mode: __webpack_require__(21) ? 'pure' : 'global',
-  copyright: '© 2018 Denis Pushkarev (zloirock.ru)'
+  copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
 });
 
 
@@ -988,11 +988,10 @@ var createCodeFn = function createCodeFn(oCodeFn) {
 
 var create = function create(jsResources, cssResources, bootCode) {
   return function (hook, vm) {
-    window.$docsify.markdown = {
-      renderer: {
-        code: createCodeFn(window.$docsify.markdown && window.$docsify.markdown.renderer && window.$docsify.markdown.renderer.code)
-      }
-    };
+    window.$docsify.markdown = window.$docsify.markdown || {};
+    window.$docsify.markdown.renderer = window.$docsify.markdown.renderer || {};
+
+    window.$docsify.markdown.renderer.code = createCodeFn(window.$docsify.markdown.renderer.code);
   };
 };
 
@@ -3821,7 +3820,7 @@ Prism.languages.javascript = Prism.languages.extend('clike', {
 
 Prism.languages.insertBefore('javascript', 'keyword', {
 	'regex': {
-		pattern: /((?:^|[^$\w\xA0-\uFFFF."'\])\s])\s*)\/(\[[^\]\r\n]+]|\\.|[^/\\\[\r\n])+\/[gimyu]{0,5}(?=\s*($|[\r\n,.;})]))/,
+		pattern: /((?:^|[^$\w\xA0-\uFFFF."'\])\s])\s*)\/(\[[^\]\r\n]+]|\\.|[^/\\\[\r\n])+\/[gimyu]{0,5}(?=\s*($|[\r\n,.;})\]]))/,
 		lookbehind: true,
 		greedy: true
 	},
@@ -3835,23 +3834,24 @@ Prism.languages.insertBefore('javascript', 'keyword', {
 
 Prism.languages.insertBefore('javascript', 'string', {
 	'template-string': {
-		pattern: /`(?:\\[\s\S]|[^\\`])*`/,
+		pattern: /`(?:\\[\s\S]|\${[^}]+}|[^\\`])*`/,
 		greedy: true,
 		inside: {
 			'interpolation': {
-				pattern: /\$\{[^}]+\}/,
+				pattern: /\${[^}]+}/,
 				inside: {
 					'interpolation-punctuation': {
-						pattern: /^\$\{|\}$/,
+						pattern: /^\${|}$/,
 						alias: 'punctuation'
 					},
-					rest: Prism.languages.javascript
+					rest: null // See below
 				}
 			},
 			'string': /[\s\S]+/
 		}
 	}
 });
+Prism.languages.javascript['template-string'].inside['interpolation'].inside.rest = Prism.languages.javascript;
 
 if (Prism.languages.markup) {
 	Prism.languages.insertBefore('markup', 'tag', {
@@ -3895,7 +3895,7 @@ Prism.languages.js = Prism.languages.javascript;
 			var src = pre.getAttribute('data-src');
 
 			var language, parent = pre;
-			var lang = /\blang(?:uage)?-(?!\*)([\w-]+)\b/i;
+			var lang = /\blang(?:uage)?-([\w-]+)\b/i;
 			while (parent && !lang.test(parent.className)) {
 				parent = parent.parentNode;
 			}
@@ -3939,25 +3939,29 @@ Prism.languages.js = Prism.languages.javascript;
 				}
 			};
 
-			if (pre.hasAttribute('data-download-link') && Prism.plugins.toolbar) {
-				Prism.plugins.toolbar.registerButton('download-file', function () {
-					var a = document.createElement('a');
-					a.textContent = pre.getAttribute('data-download-link-label') || 'Download';
-					a.setAttribute('download', '');
-					a.href = src;
-					return a;
-				});
-			}
-
 			xhr.send(null);
 		});
+
+		if (Prism.plugins.toolbar) {
+			Prism.plugins.toolbar.registerButton('download-file', function (env) {
+				var pre = env.element.parentNode;
+				if (!pre || !/pre/i.test(pre.nodeName) || !pre.hasAttribute('data-src') || !pre.hasAttribute('data-download-link')) {
+					return;
+				}
+				var src = pre.getAttribute('data-src');
+				var a = document.createElement('a');
+				a.textContent = pre.getAttribute('data-download-link-label') || 'Download';
+				a.setAttribute('download', '');
+				a.href = src;
+				return a;
+			});
+		}
 
 	};
 
 	document.addEventListener('DOMContentLoaded', self.Prism.fileHighlight);
 
 })();
-
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(26)))
 
 /***/ }),
