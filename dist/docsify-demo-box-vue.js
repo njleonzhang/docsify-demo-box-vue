@@ -576,9 +576,8 @@ var generateComponent = function generateComponent(code, lang, jsResources, cssR
       };
     },
     beforeDestroy: function beforeDestroy() {
-      var id = this.id;
+      var id = this.boxId;
       delete window.$docsify.vueComponents['demo-box-' + id];
-      this.$destroy();
     }
   };
 };

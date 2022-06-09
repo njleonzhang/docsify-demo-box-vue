@@ -78,9 +78,8 @@ export let generateComponent = function(code, lang, jsResources, cssResources, b
       }
     },
     beforeDestroy() {
-      let id = this.id
+      let id = this.boxId
       delete window.$docsify.vueComponents['demo-box-' + id]
-      this.$destroy()
     }
   }
 }
