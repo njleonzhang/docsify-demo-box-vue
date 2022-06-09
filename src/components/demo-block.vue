@@ -24,159 +24,160 @@
   </div>
 </template>
 
-<style lang="scss">
-  .demo-block {
-    border: solid 1px #eaeefb;
-    border-radius: 4px;
-    transition: .2s;
+<style>
+.demo-block {
+  border: solid 1px #eaeefb;
+  border-radius: 4px;
+  transition: .2s;
+}
 
-    &.hover {
-      box-shadow: 0 0 8px 0 rgba(232, 237, 250, .6), 0 2px 4px 0 rgba(232, 237, 250, .5);
-    }
+.demo-block.hover {
+  box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6), 0 2px 4px 0 rgba(232, 237, 250, 0.5);
+}
 
-    code {
-      font-family: Menlo, Monaco, Consolas, Courier, monospace;
-    }
+.demo-block code {
+  font-family: Menlo, Monaco, Consolas, Courier, monospace;
+}
 
-    .demo-button {
-      float: right;
-    }
+.demo-block .demo-button {
+  float: right;
+}
 
-    .source {
-      padding: 24px;
-    }
+.demo-block .source {
+  padding: 24px;
+}
 
-    .meta {
-      background-color: #f9fafc;
-      border-top: solid 1px #eaeefb;
-      clear: both;
-      overflow: hidden;
-      height: 0;
-      transition: height .2s;
-    }
+.demo-block .meta {
+  background-color: #f9fafc;
+  border-top: solid 1px #eaeefb;
+  clear: both;
+  overflow: hidden;
+  height: 0;
+  transition: height .2s;
+}
 
-    .description {
-      padding: 18px 24px;
-      width: 40%;
-      box-sizing: border-box;
-      border-left: solid 1px #eaeefb;
-      float: right;
-      font-size: 14px;
-      line-height: 1.8;
-      color: #5e6d82;
-      word-break: break-word;
+.demo-block .description {
+  padding: 18px 24px;
+  width: 40%;
+  box-sizing: border-box;
+  border-left: solid 1px #eaeefb;
+  float: right;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #5e6d82;
+  word-break: break-word;
+}
 
-      p {
-        margin: 0 0 12px;
-        line-height: 1.8;
-      }
+.demo-block .description p {
+  margin: 0 0 12px;
+  line-height: 1.8;
+}
 
-      code {
-        color: #5e6d82;
-        background-color: #e6effb;
-        margin: 0 4px;
-        display: inline-block;
-        padding: 1px 5px;
-        font-size: 12px;
-        border-radius: 3px;
-        height: 18px;
-        line-height: 18px;
-      }
+.demo-block .description code {
+  color: #5e6d82;
+  background-color: #e6effb;
+  margin: 0 4px;
+  display: inline-block;
+  padding: 1px 5px;
+  font-size: 12px;
+  border-radius: 3px;
+  height: 18px;
+  line-height: 18px;
+}
 
-      button {
-        height: 36px;
-        line-height: 36px;
-        text-align: center;
-        background: #20a0ff;
-        border: none;
-        outline: none;
-        border-radius: 5px;
-        color: white;
-        display: block;
-        font-size: 14px;
-        padding-left: 10px;
-        padding-right: 10px;
+.demo-block .description button {
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  background: #20a0ff;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  color: white;
+  display: block;
+  font-size: 14px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
 
-        &:hover {
-          background: #4db3ff;
-        }
-      }
-    }
+.demo-block .description button:hover {
+  background: #4db3ff;
+}
 
-    .highlight {
-      width: 60%;
-      border-right: solid 1px #eaeefb;
+.demo-block .highlight {
+  width: 60%;
+  border-right: solid 1px #eaeefb;
+}
 
-      pre {
-        margin: 0;
-      }
+.demo-block .highlight pre {
+  margin: 0;
+}
 
-      code.hljs {
-        margin: 0;
-        border: none;
-        max-height: none;
-        border-radius: 0;
+.demo-block .highlight code.hljs {
+  margin: 0;
+  border: none;
+  max-height: none;
+  border-radius: 0;
+}
 
-        &::before {
-          content: none;
-        }
-      }
-    }
+.demo-block .highlight code.hljs::before {
+  content: none;
+}
 
-    .lang-css {
-      padding-bottom: 0;
-    }
+.demo-block .lang-css {
+  padding-bottom: 0;
+}
 
-    .demo-block-control {
-      border-top: solid 1px #eaeefb;
-      height: 36px;
-      box-sizing: border-box;
-      background-color: #fff;
-      border-bottom-left-radius: 4px;
-      border-bottom-right-radius: 4px;
-      text-align: center;
-      margin-top: -1px;
-      color: #d3dce6;
-      cursor: pointer;
-      transition: .2s;
-      position: relative;
+.demo-block .demo-block-control {
+  border-top: solid 1px #eaeefb;
+  height: 36px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  text-align: center;
+  margin-top: -1px;
+  color: #d3dce6;
+  cursor: pointer;
+  transition: .2s;
+  position: relative;
+}
 
-      &.is-fixed {
-        position: fixed;
-        bottom: 0;
-        width: 868px;
-      }
+.demo-block .demo-block-control.is-fixed {
+  position: fixed;
+  bottom: 0;
+  width: 868px;
+}
 
-      i {
-        font-size: 12px;
-        line-height: 36px;
-        transition: .3s;
-        &.hovering {
-          transform: translateX(-40px);
-        }
-      }
+.demo-block .demo-block-control i {
+  font-size: 12px;
+  line-height: 36px;
+  transition: .3s;
+}
 
-      span {
-        position: absolute;
-        transform: translateX(-30px);
-        font-size: 14px;
-        line-height: 36px;
-        transition: .3s;
-        display: inline-block;
-        color: #58B7FF;
+.demo-block .demo-block-control i.hovering {
+  transform: translateX(-40px);
+}
 
-        &:hover {
-          color: #1D8CE0;
-        }
-      }
+.demo-block .demo-block-control span {
+  position: absolute;
+  transform: translateX(-30px);
+  font-size: 14px;
+  line-height: 36px;
+  transition: .3s;
+  display: inline-block;
+  color: #58B7FF;
+}
 
-      & .text-slide-enter,
-      & .text-slide-leave-active {
-        opacity: 0;
-        transform: translateX(10px);
-      }
-    }
-  }
+.demo-block .demo-block-control span:hover {
+  color: #1D8CE0;
+}
+
+.demo-block .demo-block-control .text-slide-enter, .demo-block .demo-block-control .text-slide-leave-active {
+  opacity: 0;
+  transform: translateX(10px);
+}
+
 </style>
 
 <script type="text/babel">
@@ -282,6 +283,10 @@
     },
 
     computed: {
+      getRouteId() {
+        let hash = new URL(window.location.href).hash
+        return hash.replace(/.*\//,'').replace('-','')
+      },
       controlText() {
         return this.isExpanded ? 'Hide' : 'Expand';
       },
@@ -326,6 +331,7 @@
     },
 
     mounted() {
+      this.$el.dataset[this.getRouteId] = ''
       this.$nextTick(() => {
         let highlight = this.$el.getElementsByClassName('highlight')[0];
         if (this.$el.getElementsByClassName('description').length === 0) {
