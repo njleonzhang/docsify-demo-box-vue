@@ -10,7 +10,7 @@ export let install = function() {
 export let generateComponent = function(code, lang, jsResources, cssResources, bootCode) {
   let html = striptags.fetch(code, 'template')
   let style = striptags.fetch(code, 'style')
-  let script = striptags.fetch(code, 'script')
+  let script = striptags.fetch(code, 'script') || 'export default {}'
   let descOrg = striptags.fetch(code, 'desc')
   let desc = marked && marked(descOrg) || descOrg
   let noBootCode = code.indexOf('/*no-boot-code*/') > -1
@@ -39,8 +39,12 @@ export let generateComponent = function(code, lang, jsResources, cssResources, b
   let jsfiddleStr = JSON.stringify({html, style, script})
 
   return {
+    props: {
+      boxId: String,
+    },
     template: `
       <demo-block class="demo-box"
+        :data-box='boxId'
         :jsfiddle="jsfiddle"
         :code="code"
         :desc="desc"
@@ -72,6 +76,10 @@ export let generateComponent = function(code, lang, jsResources, cssResources, b
         bootCode,
         noBootCode
       }
+    },
+    beforeDestroy() {
+      let id = this.boxId
+      delete window.$docsify.vueComponents['demo-box-' + id]
     }
   }
 }

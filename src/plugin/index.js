@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import {generateComponent} from '../components/'
 
 let createCodeFn = function(oCodeFn) {
@@ -8,8 +7,8 @@ let createCodeFn = function(oCodeFn) {
     if (/^\s*\/\*\s*vue\s*\*\//.test(code)) {
       id++
       var DemoBlockWrapper = generateComponent(code, lang, jsResources, cssResources, bootCode)
-      Vue.component('DemoBox' + id, DemoBlockWrapper)
-      return '<' + 'demo-box-' + id + '></demo-box-' + id + '>'
+      window.$docsify.vueComponents["demo-box-" + id] = DemoBlockWrapper
+      return `<demo-box-${id} box-id='${id}'></demo-box-${id}>`
     } else {
       if (oCodeFn) {
         return oCodeFn.apply(this, arguments)
@@ -26,6 +25,7 @@ export let create = function(jsResources, cssResources, bootCode) {
   return function(hook, vm) {
     window.$docsify.markdown = window.$docsify.markdown || {}
     window.$docsify.markdown.renderer = window.$docsify.markdown.renderer || {}
+    window.$docsify.vueComponents = window.$docsify.vueComponents || {}
 
     window.$docsify.markdown.renderer.code = createCodeFn(window.$docsify.markdown.renderer.code)
   }
